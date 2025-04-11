@@ -127,3 +127,9 @@ MEDIA_URL = '/media/'
 if os.environ.get('RENDER'):
     DEBUG = False
 
+# settings.py file me:
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://web-production-881b7.up.railway.app',
+    'https://b7.up.railway.app',  # jo bhi actual domain ho, wo daalo
+]
