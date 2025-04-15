@@ -14,10 +14,10 @@
                     <p class="card-text mb-auto">{{item.head1}}</p>
                     <a href="blogpost/{{item.post_id}}/" class="stretched-link">Continue reading</a>
                 </div>
-                <div class="col-auto d-none d-lg-block">
-                    <img src="/media/{{item.thumbnail}}" class="bd-placeholder-img" width="200" height="250" aria-label="Placeholder: Thumbnail">
-                    
+                <div class="col-auto">
+                    <img src="/media/{{item.thumbnail}}" class="img-fluid rounded shadow" style="max-width: 100%; height: auto;" alt="Blog Image">
                 </div>
+                
             </div>
         </div>
         {% if forloop.counter|divisibleby:2%}

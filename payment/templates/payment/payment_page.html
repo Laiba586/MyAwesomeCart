@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JazzCash Payment</title>
+</head>
+<body>
+    <h2>JazzCash Test Payment</h2>
+    <form method="post" action="{% url 'payment' %}">
+        {% csrf_token %}
+        <label>Amount (Rs):</label>
+        <input type="number" name="amount" required>
+        <br><br>
+        <button type="submit">Pay Now with JazzCash</button>
+    </form>
+</body>
+</html>
