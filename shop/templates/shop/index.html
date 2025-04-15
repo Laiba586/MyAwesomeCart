@@ -3,43 +3,31 @@
 
 {% block css %}
 <style>
-  @media (max-width: 768px) {
-    .card {
-      width: 100% !important;
-    }
-    .carousel-control-prev,
-    .carousel-control-next {
-      padding-top: 0;
-    }
-  }
+.card {
+  width: 170px !important;
+  margin: 10px !important;
+  display: inline-block;
+  vertical-align: top;
+}
 
-  .carousel-indicators .active {
-    background-color: blue;
-  }
+.card img {
+  width: 170px;
+  height: 200px;
+  object-fit: cover;
+}
 
-  .card-img-top {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-  }
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
-  .carousel-control-prev-icon,
-  .carousel-control-next-icon {
-    background-color: blue;
-  }
-
-  .carousel-indicators {
-    bottom: -40px;
-  }
-
-  .carousel-inner .carousel-item > div {
-    display: flex;
-    justify-content: center;
-  }
-
+@media (max-width: 768px) {
   .card {
-    margin: auto;
+    width: 170px !important;
+    margin: 10px auto !important;
   }
+}
 </style>
 {% endblock %}
 
