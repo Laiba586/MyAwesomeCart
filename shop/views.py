@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import Product, Contact, Order,OrderUpdate
 from math import ceil
-import json
+
+from payment.views import payment
+from .models import Order
 
 
 # Create your views here.
@@ -93,26 +95,25 @@ def productView(request, myid):
     return render(request, 'shop/prodview.html', {'product':product[0]})
 
 
+  # or whatever your payment view is
+
+
+
 def checkout(request):
-    if request.method=="POST":
-        items_json = request.POST.get('itemsJson', '')
-        name = request.POST.get('name', '')
-        amount = request.POST.get('amount', '')
-        email = request.POST.get('email', '')
-        address = request.POST.get('address1', '') + " " + request.POST.get('address2', '')
-        city = request.POST.get('city', '')
-        state = request.POST.get('state', '')
-        zip_code = request.POST.get('zip_code', '')
-        phone = request.POST.get('phone', '')
-        order = Order(items_json=items_json, name=name, email=email, address=address, city=city,
-                       state=state, zip_code=zip_code, phone=phone,amount=amount)
-        order.save()
-        update = OrderUpdate(order_id=order.order_id, update_desc="The order has been placed")
-        update.save()
-        thank = True
-        id = order.order_id
-        return render(request, 'shop/checkout.html', {'thank':thank, 'id': id})
-    return render(request, 'shop/checkout.html')
+    if request.method == "POST":
+        order = Order.objects.create(
+            name=request.POST.get('name'),
+            email=request.POST.get('email'),
+            amount=request.POST.get('amount'),
+            items_json=request.POST.get('itemsJson'),
+            phone=request.POST.get('phone'),
+        )
+        request.session['order_id'] = order.order_id
+        request.session['amount'] = request.POST.get('amount')
+        return redirect('payment')  # redirect to payment page
+
+    return render(request, 'shop/checkout.html')  # Show checkout form on GET
+
 
 def catagories(request):
     return render(request, 'shop/catagories.html')

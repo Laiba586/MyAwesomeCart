@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Receipt</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f2f4f8;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+        }
+        .receipt {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 30px 40px;
+            max-width: 450px;
+            width: 100%;
+        }
+        .receipt h2 {
+            color: #2ecc71;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .receipt .field {
+            margin-bottom: 15px;
+        }
+        .receipt .field strong {
+            display: block;
+            color: #555;
+            font-size: 15px;
+        }
+        .receipt .value {
+            font-size: 17px;
+            color: #000;
+            margin-top: 4px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="receipt">
+        <h2>Payment Successful!</h2>
+
+        <div class="field">
+            <strong>Transaction Reference:</strong>
+            <div class="value">{{ txn_ref }}</div>
+        </div>
+
+        <div class="field">
+            <strong>Amount:</strong>
+            <div class="value">{{ amount }}</div>
+        </div>
+
+        <div class="field">
+            <strong>Status:</strong>
+            <div class="value">{{ status|default:"Unknown" }}</div>
+        </div>
+
+        <div class="field">
+            <strong>Transaction Date & Time:</strong>
+            <div class="value">{{ txn_datetime }}</div>
+        </div>
+
+        <div class="footer">
+            Thank you for your payment.
+        </div>
+    </div>
+</body>
+</html>

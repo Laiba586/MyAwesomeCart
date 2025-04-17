@@ -3,15 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <title>JazzCash Payment</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 40px 50px;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #34495e;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background: #e67e22;
+            color: white;
+            font-size: 16px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #d35400;
+        }
+
+        p {
+            font-size: 16px;
+            color: #555;
+        }
+    </style>
 </head>
 <body>
-    <h2>JazzCash Test Payment</h2>
-    <form method="post" action="{% url 'payment' %}">
+
+<div class="container">
+    {% if data %}
+    <form method="post" action="{{ post_url }}">
         {% csrf_token %}
-        <label>Amount (Rs):</label>
-        <input type="number" name="amount" required>
-        <br><br>
+        {% for key, value in data.items %}
+            <input type="hidden" name="{{ key }}" value="{{ value }}">
+        {% endfor %}
+        <p>Redirecting to JazzCash...</p>
+        <script>
+            document.forms[0].submit();
+        </script>
+    </form>
+
+    {% else %}
+    <h2>JazzCash Test Payment</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label>Enter Amount (Rs):</label>
+        <input type="text" name="amount" required>
         <button type="submit">Pay Now with JazzCash</button>
     </form>
+    {% endif %}
+</div>
+
 </body>
 </html>

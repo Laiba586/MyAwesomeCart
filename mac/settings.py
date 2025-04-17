@@ -133,4 +133,21 @@ if os.environ.get('RENDER'):
 CSRF_TRUSTED_ORIGINS = [
     'https://web-production-881b7.up.railway.app',
     'https://b7.up.railway.app',  # jo bhi actual domain ho, wo daalo
+    'http://127.0.0.1:8000',
 ]
+
+
+
+
+# JazzCash Test Configuration (Sandbox)
+JAZZCASH_MERCHANT_ID = 'MC19125'  # Test Merchant ID
+JAZZCASH_PASSWORD = '123456'      # Test Password
+JAZZCASH_INTEGERITY_SALT = 'aabbccdd11223344'  # Sample integrity salt
+
+# Return URL after payment (you'll handle this in your views later)
+JAZZCASH_RETURN_URL = 'http://127.0.0.1:8000/payments/response/'
+
+# Sandbox endpoint URL (test environment)
+JAZZCASH_POST_URL = 'https://sandbox.jazzcash.com.pk/CustomerPortal/transactionmanagement/merchantform/'
+
+
